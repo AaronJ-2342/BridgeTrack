@@ -1,92 +1,222 @@
-<script setup>
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-function returnHome() {
-  router.push('/')
-}
-</script>
 <template>
-  <img id="mainImg" src="@/assets/Forest.jpg" alt="Forest background" />
+  <main
+    class="min-h-screen text-slate-900"
+    :style="{ background: `url(${forestBg}) no-repeat center center fixed` }"
+  >
+    <div class="absolute inset-0 bg-black/45"></div>
+    <div class="relative">
+      <div class="mx-auto flex min-h-screen max-w-3xl items-center px-4 py-10">
+        <section class="w-full">
+          <header class="mb-6">
+            <h1
+              class="text-3xl font-semibold tracking-tight text-white"
+              style="text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45)"
+            >
+              Student Registration
+            </h1>
+            <p class="mt-2 text-sm text-stone-300">
+              Register once to access eligible courses and plan your terms. No login required.
+            </p>
+          </header>
 
-  <form id="formBox">
-    <div class="main">
-      <h1 id="acnt">Create Account</h1>
-      <input class="innerMain" type="text" placeholder="First Name" />
-      <input class="innerMain" type="text" placeholder="Last Name" />
-      <input class="innerMain" type="text" placeholder="email" />
-      <input class="innerMain" type="text" placeholder="phone" />
-      <h3>
-        Are you 18 years or older? <span><input type="checkbox" /></span>
-      </h3>
-      <input class="innerMain" type="text" placeholder="birthdate" />
-      <!--Needs a calendar or a scroll menu with the given month days and years, hide on load and only show if the checkbox above is checked-->
-      <button @click="returnHome" id="return">Return</button>
-      <input type="submit" value="Create" id="create" />
+          <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <form class="space-y-6" @submit.prevent="submit">
+              <!-- Name -->
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label for="firstName" class="block text-sm font-medium text-slate-700">
+                    First name <span class="text-rose-600">*</span>
+                  </label>
+                  <input
+                    id="firstName"
+                    v-model.trim="form.firstName"
+                    type="text"
+                    class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-offset-2 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                    placeholder="John"
+                    required
+                  />
+                  <p class="mt-1 text-xs text-slate-500">Enter your legal first name.</p>
+                </div>
+
+                <div>
+                  <label for="lastName" class="block text-sm font-medium text-slate-700">
+                    Last name <span class="text-rose-600">*</span>
+                  </label>
+                  <input
+                    id="lastName"
+                    v-model.trim="form.lastName"
+                    type="text"
+                    class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-offset-2 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                    placeholder="Smith"
+                    required
+                  />
+                  <p class="mt-1 text-xs text-slate-500">Enter your legal last name.</p>
+                </div>
+              </div>
+
+              <!-- Contact -->
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label for="email" class="block text-sm font-medium text-slate-700">
+                    Email <span class="text-rose-600">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    v-model.trim="form.email"
+                    type="email"
+                    class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-offset-2 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                    placeholder="you@example.com"
+                    required
+                  />
+                  <p class="mt-1 text-xs text-slate-500">
+                    We’ll use this to prevent duplicate registrations.
+                  </p>
+                </div>
+
+                <div>
+                  <label for="phone" class="block text-sm font-medium text-slate-700">
+                    Phone <span class="text-rose-600">*</span>
+                  </label>
+                  <input
+                    id="phone"
+                    v-model.trim="form.phone"
+                    type="tel"
+                    inputmode="tel"
+                    class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-offset-2 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                    placeholder="(555) 123-4567"
+                    required
+                  />
+                  <p class="mt-1 text-xs text-slate-500">Include a number you can be reached at.</p>
+                </div>
+              </div>
+
+              <!-- Under 18 -->
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <div class="flex items-start gap-3">
+                  <input
+                    id="under18"
+                    v-model="form.under18"
+                    type="checkbox"
+                    class="mt-1 h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-200"
+                  />
+                  <div>
+                    <label for="under18" class="block text-sm font-medium text-slate-800">
+                      I am under 18
+                    </label>
+                    <p class="mt-1 text-xs text-slate-600">If checked, a birthdate is required.</p>
+                  </div>
+                </div>
+
+                <div v-if="form.under18" class="mt-4">
+                  <label for="birthdate" class="block text-sm font-medium text-slate-700">
+                    Birthdate <span class="text-rose-600">*</span>
+                  </label>
+                  <input
+                    id="birthdate"
+                    v-model="form.birthdate"
+                    type="date"
+                    class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm outline-none ring-offset-2 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                    :required="form.under18"
+                  />
+                  <p class="mt-1 text-xs text-slate-500">Only required if you’re under 18.</p>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p class="text-xs text-slate-500">
+                  Fields marked <span class="text-rose-600">*</span> are required.
+                </p>
+
+                <div class="flex gap-3">
+                  <button
+                    type="button"
+                    class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                    @click="reset"
+                  >
+                    Clear
+                  </button>
+
+                  <button
+                    type="submit"
+                    class="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  >
+                    Submit registration
+                  </button>
+                </div>
+              </div>
+
+              <!-- Status (optional placeholder) -->
+              <div
+                v-if="status.message"
+                class="rounded-xl border border-slate-200 bg-white p-3 text-sm"
+                :class="status.ok ? 'text-slate-800' : 'text-rose-700'"
+              >
+                {{ status.message }}
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
     </div>
-  </form>
+  </main>
 </template>
 
-<style scoped>
-#mainImg {
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
+<script setup>
+import forestBg from '@/assets/Forest.jpg'
+import { reactive, watch } from 'vue'
+
+// our form object here updates in real time thanks to reactive.
+const form = reactive({
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  under18: false,
+  birthdate: '',
+})
+
+// same here with status
+const status = reactive({
+  ok: true,
+  message: '',
+})
+
+// Keep birthdate cleared when not needed
+watch(
+  () => form.under18,
+  (isUnder18) => {
+    if (!isUnder18) form.birthdate = ''
+  },
+)
+
+// Reset form frields.
+function reset() {
+  form.firstName = ''
+  form.lastName = ''
+  form.email = ''
+  form.phone = ''
+  form.under18 = false
+  form.birthdate = ''
+  status.ok = true
+  status.message = ''
 }
 
-#formBox {
-  background-color: white;
-  padding: 20px;
-  width: 400px;
-  border-radius: 8px;
+function submit() {
+  // Confirm all form fields. We also check to make sure a student selects their birthday if they are below 18.
+  if (!form.firstName || !form.lastName || !form.email || !form.phone) {
+    status.ok = false
+    status.message = 'Please fill out all required fields.'
+    return
+  }
+  if (form.under18 && !form.birthdate) {
+    status.ok = false
+    status.message = 'Birthdate is required if you are under 18.'
+    return
+  }
 
-  display: flex;
-  justify-content: center;
-
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  box-shadow: 0 0 15px gray;
-
-  transform: translate(-50%, -50%);
+  // Placerholder stuff.
+  status.ok = true
+  status.message = 'Registration submitted.'
 }
-
-#acnt {
-  display: flex;
-  justify-content: center;
-}
-
-#create {
-  border-radius: 8px;
-  font-size: 17px;
-  width: 120px;
-  position: relative;
-  left: 130px;
-  bottom: 20px;
-}
-
-#return {
-  border-radius: 8px;
-  font-size: 17px;
-  width: 120px;
-  position: relative;
-  top: 6px;
-}
-
-.main {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-
-.innerMain {
-  border-radius: 8px;
-  font-size: 20px;
-  position: relative;
-  margin-bottom: 6px;
-}
-</style>
+</script>
