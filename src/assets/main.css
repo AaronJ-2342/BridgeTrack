@@ -1,2 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
 @import 'tailwindcss';
-@import './base.css';
+
+:root {
+  color-scheme: light;
+  --bt-ink: #1f2933;
+  --bt-wash: #f3f1ed;
+}
+
+body {
+  font-family: 'Manrope', 'Noto Sans', sans-serif;
+  background: var(--bt-wash);
+  color: var(--bt-ink);
+}
+
+@keyframes bt-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
