@@ -23,12 +23,18 @@ import studentsStudying from '@/assets/studentsStudying.jpg'
               Complete registration, review term plans, and check attendance for your BridgeTrack
               courses. This portal is designed for students preparing for college success.
             </p>
-            <div class="mt-2">
+            <div class="mt-2 flex gap-3">
               <RouterLink
                 to="/register"
                 class="inline-flex items-center justify-center rounded-md bg-gradient-to-br from-purple-700 to-purple-600 px-5 py-2 text-xs font-semibold text-white shadow-[0_16px_32px_rgba(109,40,217,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(109,40,217,0.34)]"
               >
                 Start student registration
+              </RouterLink>
+              <RouterLink
+                to="/login"
+                class="inline-flex items-center justify-center rounded-md bg-gradient-to-br from-purple-700 to-purple-600 px-5 py-2 text-xs font-semibold text-white shadow-[0_16px_32px_rgba(109,40,217,0.28)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_36px_rgba(109,40,217,0.34)]"
+              >
+                Student Login
               </RouterLink>
             </div>
             <p class="text-xs text-zinc-500">
