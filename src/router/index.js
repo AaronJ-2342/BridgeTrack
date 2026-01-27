@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import RegisterView from '@/views/RegisterView.vue'
-import StudentPortalView from '@/views/StudentPortalView.vue'
-import StaffDashboardView from '@/views/StaffDashboardView.vue'
-import LoginView from '@/views/LoginView.vue'
+import HomeView from '@/views/Home.vue'
+import StudentPortal from '@/views/Student/StudentPortal.vue'
+import StudentRegistration from '@/views/Student/StudentRegistration.vue'
+import DashboardView from '@/views/Dashboard.vue'
+import LoginView from '@/views/Auth/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,21 +17,23 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+      meta: { hideNav: true },
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterView,
+      component: StudentRegistration,
+      meta: { hideNav: true },
     },
     {
       path: '/portal',
       name: 'portal',
-      component: StudentPortalView,
+      component: StudentPortal,
     },
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: StaffDashboardView,
+      component: DashboardView,
     },
   ],
 })
