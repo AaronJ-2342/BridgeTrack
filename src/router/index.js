@@ -5,6 +5,8 @@ import StudentRegistration from '@/views/Student/StudentRegistration.vue'
 import DashboardView from '@/views/Dashboard.vue'
 import LoginView from '@/views/Auth/Login.vue'
 
+import InstructorAttendance from '@/views/Staff/InstructorAttendance.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

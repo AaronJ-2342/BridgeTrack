@@ -22,11 +22,12 @@ const isAuthenticated = computed(() => !!auth.user?.name)
         <RouterLink to="/" class="flex items-center gap-2.5 transition-opacity hover:opacity-90">
           <div
             class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-700 to-purple-600 text-white shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5" aria-hidden="true">
               <path
-                d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 002.21 10.057a.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z" />
-              <path
-                d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.438.227 2.945.227 4.53 0 5.705-3.276 10.518-8.253 12.28a.75.75 0 01-.496 0c-4.976-1.762-8.252-6.575-8.252-12.28 0-1.585.093-3.092.227-4.53 2.396.936 5.056 2.093 7.666 3.282 3.11.854.596 1.056.817 0z" />
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.24 50.552 50.552 0 00-2.658.813m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" 
+              />
             </svg>
           </div>
           <span class="text-lg font-bold tracking-tight text-zinc-900">BridgeTrack</span>
@@ -37,10 +38,12 @@ const isAuthenticated = computed(() => !!auth.user?.name)
             :class="$route.path === '/' ? 'text-zinc-900' : 'text-zinc-500'">
             Home
           </RouterLink>
+
           <RouterLink to="/portal" class="text-sm font-medium transition-colors hover:text-purple-700"
             :class="$route.path.startsWith('/portal') ? 'text-zinc-900' : 'text-zinc-500'">
             Student portal
           </RouterLink>
+
           <RouterLink to="/dashboard" class="text-sm font-medium transition-colors hover:text-purple-700"
             :class="$route.path.startsWith('/dashboard') ? 'text-zinc-900' : 'text-zinc-500'">
             Dashboard

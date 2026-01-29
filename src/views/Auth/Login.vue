@@ -65,9 +65,14 @@ function enter() {
               <!-- focus:border-slate-400 changes the inner border color
                 focus:ring-2 makes a second ring around the main one that is 2px thick,
                 focus:ring-slate-200 changes the color of the second ring (makes it lighter in color) -->
-              <input id="username" v-model.trim="form.username" type="text"
+              <input 
+                id="username" 
+                v-model.trim="form.username" 
+                type="text"
                 class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-2 py-3 text-sm outline-none ring-offset-2 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-                placeholder="Username">
+                placeholder="Username"
+                required
+              />
             </div>
 
             <!-- Password -->
@@ -76,9 +81,14 @@ function enter() {
                 Password
               </label>
 
-              <input id="password" v-model.trim="form.password" type="password"
+              <input 
+                id="password" 
+                v-model.trim="form.password" 
+                type="password"
                 class="mt-1 w-full rounded-xl border border-slate-300 bg-white px-2 py-3 text-sm outline-none ring-offset-2 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
-                placeholder="Password">
+                placeholder="Password"
+                required
+              />
             </div>
 
             <!-- Actions -->
