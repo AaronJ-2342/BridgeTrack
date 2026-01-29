@@ -12,21 +12,22 @@ const props = defineProps({
   },
 })
 
-const today = new Date().toISOString().split('T')[0]
+const today = new Date().toISOString().split('T')[0] //what are the toISOString and split methods for?
 
 const attendanceSection = ref('')
 const attendanceDate = ref(today)
-const showRosterChecklist = ref(false)
-const confirmPastEdit = ref(false)
+const showRosterChecklist = ref(false) //?
+const confirmPastEdit = ref(false) //?
 const attendanceRoster = ref([])
 
-const hasAssignedSections = computed(() => props.assignedSections.length > 0)
-const isPastAttendance = computed(() => attendanceDate.value < today)
-const attendanceReady = computed(() => attendanceSection.value && attendanceDate.value)
-const attendanceSaveDisabled = computed(() =>
+const hasAssignedSections = computed(() => props.assignedSections.length > 0) //if the student has an assigned section?
+const isPastAttendance = computed(() => attendanceDate.value < today) //has attended in the past
+const attendanceReady = computed(() => attendanceSection.value && attendanceDate.value) //?
+const attendanceSaveDisabled = computed(() =>                                           //?
   !showRosterChecklist.value || (isPastAttendance.value && !confirmPastEdit.value),
 )
 
+//I have no clue what this is for
 watch(
   () => props.rosterStudents,
   (students) => {
@@ -38,10 +39,12 @@ watch(
   { immediate: true },
 )
 
+//checks if the student previously attended?
 watch(attendanceDate, () => {
   if (!isPastAttendance.value) confirmPastEdit.value = false
 })
 
+//shows the student based on if they attended?
 const openRosterChecklist = () => {
   if (!attendanceReady.value) return
   showRosterChecklist.value = true

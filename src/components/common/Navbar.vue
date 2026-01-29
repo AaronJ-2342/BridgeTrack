@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import UserMenu from '@/components/common/UserMenu.vue'
 
+// whats this for??
 defineProps({
   showUser: {
     type: Boolean,
@@ -51,6 +52,7 @@ const isAuthenticated = computed(() => !!auth.user?.name)
         </nav>
       </div>
 
+      <!-- where is the below items at because I cant seem to find it, unless its based on that v-if"!isAuthenticated"-->
       <div class="flex items-center gap-4">
 
         <!-- Public: Login/Register -->

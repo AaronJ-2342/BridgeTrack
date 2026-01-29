@@ -32,6 +32,7 @@ const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
 
+// click outside of the menu it dissapears
 onClickOutside(menuRef, () => {
   isOpen.value = false
 })

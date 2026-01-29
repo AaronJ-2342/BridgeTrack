@@ -1,5 +1,6 @@
 <script setup>
-const courseCatalog = []
+const courseCatalog = [2, 1]
+// how doth the work ye courseCatalog, I can add data to thine arrayness but ye show not thine gorgeous data
 </script>
 
 <template>

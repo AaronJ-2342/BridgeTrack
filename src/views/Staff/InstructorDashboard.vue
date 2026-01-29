@@ -25,6 +25,7 @@ const activeTab = ref('attendance')
 const assignedSections = ref([])
 const rosterStudents = ref([])
 const attendanceHistory = ref([])
+//what does the below function do?
 const tabClass = (tabId) =>
   activeTab.value === tabId
     ? 'bt-btn-primary px-4 py-2 text-xs'
@@ -47,6 +48,8 @@ const tabClass = (tabId) =>
           <span class="text-xs font-semibold text-purple-700">{{ auth.roleLabel }}</span>
         </div>
       </header>
+
+      <!-- I cant find the record attendance, Rosters, or History buttons are at in this code, or maybe I do and im just not understanding how it works?-->
 
       <section v-if="auth.isInstructor" class="mt-10">
         <div class="flex flex-wrap gap-2">
